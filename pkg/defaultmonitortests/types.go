@@ -6,6 +6,7 @@ import (
 	"github.com/openshift/origin/pkg/monitortestframework"
 	"github.com/openshift/origin/pkg/monitortests/authentication/legacyauthenticationmonitortests"
 	"github.com/openshift/origin/pkg/monitortests/authentication/requiredsccmonitortests"
+	"github.com/openshift/origin/pkg/monitortests/monitoring/hapolicymanagement"
 	admupgradestatus "github.com/openshift/origin/pkg/monitortests/cli/adm_upgrade/status"
 	azuremetrics "github.com/openshift/origin/pkg/monitortests/cloud/azure/metrics"
 	"github.com/openshift/origin/pkg/monitortests/clusterversionoperator/legacycvomonitortests"
@@ -172,6 +173,8 @@ func newUniversalMonitorTests(info monitortestframework.MonitorTestInitializatio
 	monitorTestRegistry.AddMonitorTestOrDie("termination-message-policy", "Cluster Version Operator", terminationmessagepolicy.NewAnalyzer())
 	monitorTestRegistry.AddMonitorTestOrDie("operator-state-analyzer", "Cluster Version Operator", operatorstateanalyzer.NewAnalyzer())
 	monitorTestRegistry.AddMonitorTestOrDie("required-scc-annotation-checker", "Cluster Version Operator", requiredsccmonitortests.NewAnalyzer())
+	// これこのままで良いのかな?
+	monitorTestRegistry.AddMonitorTestOrDie("ha-policy-management-checker", "Cluster Version Operator", hapolicymanagement.NewAnalyzer())
 
 	monitorTestRegistry.AddMonitorTestOrDie("etcd-log-analyzer", "etcd", etcdloganalyzer.NewEtcdLogAnalyzer())
 	monitorTestRegistry.AddMonitorTestOrDie("legacy-etcd-invariants", "etcd", legacyetcdmonitortests.NewLegacyTests())
